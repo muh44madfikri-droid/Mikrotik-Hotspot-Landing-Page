@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>WZone Hotspot</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* body{
+    margin:0;
+    height:100vh;
+    background:linear-gradient(135deg,#0a6fb3,#ec008c);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+} */
+/* body{
+margin:0;
+height:100vh;
+background:linear-gradient(-45deg,#0a6fb3,#ec008c,#333,#0a6fb3);
+background-size:400% 400%;
+animation:bg 15s ease infinite;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+transition:.5s;
+} */
+body{
+margin:0;
+height:100vh;
+background:linear-gradient(-45deg,#0a6fb3,#ec008c,#333,#0a6fb3);
+background-size:400% 400%;
+animation:bg 15s ease infinite;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+transition:.5s;
+}
+
+.dark{background:#111!important;}
+
+@keyframes bg{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+.card{
+    width:340px;
+    background:rgba(0,0,0,.45);
+    border-radius:18px;
+    padding:35px 25px;
+    text-align:center;
+    color:white;
+    animation:fadeUp .8s ease;
+}
+
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.logo{
+    width:170px;
+    margin-bottom:20px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.05)}
+    100%{transform:scale(1)}
+}
+
+input{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    margin-top:12px;
+    font-size:14px;
+}
+
+button{
+    margin-top:20px;
+    width:100%;
+    padding:12px;
+    background:#ec008c;
+    border:none;
+    border-radius:10px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.85;
+}
+
+.footer{
+    margin-top:20px;
+    font-size:11px;
+    color:#ccc;
+}
+
+.wifi{
+    font-size:40px;
+    margin-bottom:10px;
+    animation:blink 1.5s infinite;
+}
+
+@keyframes blink{
+    0%,100%{opacity:1}
+    50%{opacity:.4}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div class="wifi"></div>
+
+<img src="logowzone.PNG" class="logo">
+<form action="$(link-login)" method="post">
+<input type="hidden" name="dst" value="$(link-orig)">
+<input type="hidden" name="popup" value="true">
+
+<input name="username" placeholder="Username" required>
+<input name="password" type="password" placeholder="Password" required>
+
+<button type="submit">LOGIN</button>
+</form>
+
+<div class="footer">
+Powered by WZone<br>
+
+</div>
+
+</div>
+
+</body>
+</html>

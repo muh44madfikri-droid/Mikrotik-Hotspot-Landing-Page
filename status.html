@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+$(if refresh-timeout)
+<meta http-equiv="refresh" content="$(refresh-timeout-secs)">
+$(endif)
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<title>Status Koneksi - ITWzone</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body {
+    background: linear-gradient(
+        120deg,
+        #0f2027,
+        #203a43,
+        #1b3a6b,
+        #0077b6,
+        #d81b60
+    );
+    background-size: 300% 300%;
+    animation: gradientMove 12s ease infinite;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    padding: 25px;
+    border-radius: 10px;
+    width: 320px;
+    margin: 60px auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    margin-top: 10px;
+    color: #fff;
+}
+
+td {
+    padding: 6px;
+}
+
+.logout-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #ff4b5c;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #e63946;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 15px auto;
+    width: 120px;
+    padding: 20px;
+}
+</style>
+
+<script>
+function openLogout() {
+    if (window.name != 'hotspot_status') return true;
+    open('$(link-logout)', 'hotspot_logout',
+    'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=320,height=300');
+    window.close();
+    return false;
+}
+</script>
+
+</head>
+<body>
+
+<div class="card">
+
+    $(if login-by == 'trial')
+        <h1>👋 Halo Trial User!</h1>
+    $(elif login-by != 'mac')
+        <h1>👋 Halo, $(username)</h1>
+    $(endif)
+    <img src="logowzone.PNG" class="logo">
+    <form action="$(link-logout)" name="logout" onSubmit="return openLogout()">
+
+        <table>
+            <tr>
+                <td><b>IP Address</b></td>
+                <td>$(ip)</td>
+            </tr>
+
+            <tr>
+                <td><b>Upload / Download</b></td>
+                <td>$(bytes-in-nice) / $(bytes-out-nice)</td>
+            </tr>
+
+            $(if session-time-left)
+            <tr>
+                <td><b>Durasi / Sisa</b></td>
+                <td>$(uptime) / $(session-time-left)</td>
+            </tr>
+            $(else)
+            <tr>
+                <td><b>Durasi Koneksi</b></td>
+                <td>$(uptime)</td>
+            </tr>
+            $(endif)
+
+            $(if refresh-timeout)
+            <tr>
+                <td><b>Auto Refresh</b></td>
+                <td>$(refresh-timeout)</td>
+            </tr>
+            $(endif)
+
+        </table>
+
+        $(if login-by-mac != 'yes')
+        <input class="logout-btn" type="submit" value="Logout">
+        $(endif)
+
+    </form>
+
+</div>
+
+</body>
+</html>

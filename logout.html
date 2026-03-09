@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">   
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+<title>Logout Berhasil - ITWzone</title>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body {
+    background: linear-gradient(
+        120deg,
+        #0f2027,
+        #203a43,
+        #1b3a6b,
+        #0077b6,
+        #d81b60
+    );
+    background-size: 300% 300%;
+    animation: gradientMove 12s ease infinite;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.logo{
+    width:170px;
+    margin-bottom:20px;
+    padding: 30px;
+    animation:pulse 2s infinite;
+}
+
+.wrap {
+    text-align: center;
+}
+
+table {
+    margin: 20px auto;
+    color: #fff;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.logout-btn {
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: #00c3ff;
+    border: none;
+    border-radius: 6px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logout-btn:hover {
+    background: #00a2d4;
+}
+</style>
+
+<script>
+function openLogin() {
+    if (window.name != 'hotspot_logout') return true;
+    open('$(link-login)', '_blank', '');
+    window.close();
+    return false;
+}
+</script>
+</head>
+
+<body>
+<div class="ie-fixMinHeight">
+    <div class="main">
+        <div class="wrap">
+
+            <h1>Logout Berhasil</h1>
+            <img src="logowzone.PNG" class="logo">  
+            <table>
+                <tr><td><b>Username</b></td><td>$(username)</td></tr>
+                <tr><td><b>IP Address</b></td><td>$(ip)</td></tr>
+                <tr><td><b>MAC Address</b></td><td>$(mac)</td></tr>
+                <tr><td><b>Durasi Pemakaian</b></td><td>$(uptime)</td></tr>
+
+                $(if session-time-left)
+                <tr><td><b>Sisa Waktu</b></td><td>$(session-time-left)</td></tr>
+                $(endif)
+
+                <tr><td><b>Upload / Download</b></td>
+                <td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
+            </table>
+
+            <form action="$(link-login)" name="login" onSubmit="return openLogin()">
+                <input class="logout-btn" type="submit" value="Login Kembali">
+            </form>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
